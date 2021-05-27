@@ -3,13 +3,15 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-train_folder = "manual_sessions/dataset"
+train_folder = "manual_sessions/"
 plot_folder = "plots/"
+data_folder = "manual_sessions/"
 ignore_files = []
-to_exclude = ['ACC']#Exclude the Accelerometer data
-target_classes = ['mistake']#['classRelease' , 'classDepth', 'classRate', 'armsLocked', 'bodyWeight']
-tensor_data, annotations = data_helper.get_data_from_files(train_folder, ignore_files=ignore_files, res_rate=25,
-                                                           to_exclude=to_exclude)
+to_exclude = ['OenName', 'RecordingID', 'ApplicationName']
+target_classes = ['mistake_back']
+tensor_data, annotations, attributes = data_helper.get_data_from_files(data_folder, ignore_files=ignore_files,
+                                                                       res_rate=25,
+                                                                       to_exclude=to_exclude)
 print("Shape of the tensor_data is: " + str(np.shape(tensor_data)))
 print("Shape of the annotation is: " + str(np.shape(annotations)))
 
