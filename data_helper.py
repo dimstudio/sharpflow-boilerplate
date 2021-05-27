@@ -171,9 +171,11 @@ def tensor_transform(df_all, df_ann, res_rate, to_exclude=None):
             len(interval_todelete)) + ' intervals without data or with missing attributes: ' + str(interval_todelete))
         df_ann_validated = df_ann.reset_index().drop(df_ann.index[interval_todelete])  # Drop a row by index
         #masked_df = np.delete(masked_df, df_ann.index[interval_todelete].to_list())
+    else:
+        df_ann_validated = df_ann.reset_index()
 
     # trick to get rid of the space
-    df_ann_validated.recordingID = df_ann_validated.recordingID.str.strip()
+    #df_ann_validated.recordingID = df_ann_validated.recordingID.str.strip()
     # This results in different length of entries
     df_resampled = [dt.resample(str(res_rate) + 'ms').first() if not dt.empty else None for dt in masked_df]
 
